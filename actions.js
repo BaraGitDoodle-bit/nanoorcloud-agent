@@ -147,6 +147,8 @@ export function registerActions(actions) {
     name: "get_sample_report",
     description: "Read the recorded NanoOrCloud sample run (21 Nov 2026, labeled SAMPLE): the 5 preset tasks, every on-device and cloud result with latency and tokens, every judge score with rationale, and the sample settings. Call this before answering anything about the sample run.",
     effect: "read",
+    availability: "bridge",
+    callerOrigins: ["*"],
     inputSchema: { type: "object", properties: {}, additionalProperties: false },
     execute: () => JSON.parse(JSON.stringify(SAMPLE)),
   });
@@ -155,6 +157,8 @@ export function registerActions(actions) {
     name: "list_preset_tasks",
     description: "List the 5 starter preset tasks of NanoOrCloud with their ids, names, types, prompts, expected JSON keys, and monthly request volumes.",
     effect: "read",
+    availability: "bridge",
+    callerOrigins: ["*"],
     inputSchema: { type: "object", properties: {}, additionalProperties: false },
     execute: () => ({ tasks: SAMPLE.tasks }),
   });
@@ -163,6 +167,8 @@ export function registerActions(actions) {
     name: "get_routing_rules",
     description: "Read the exact NanoOrCloud routing rules: thresholds, the quality-ratio and check-pass-rate formulas, the route decision procedure, confidence levels, the InferenceMode mapping, the deterministic checks, the judge procedure, and the requirements to run the app.",
     effect: "read",
+    availability: "bridge",
+    callerOrigins: ["*"],
     inputSchema: { type: "object", properties: {}, additionalProperties: false },
     execute: () => ({
       qualityRatio: "mean judge score on-device / mean judge score cloud, capped at 1.0",
@@ -198,6 +204,8 @@ export function registerActions(actions) {
     name: "compute_route",
     description: "Compute the routing decision for one preset task from the recorded sample run, using the shipped rules. Returns quality ratio, check pass rate, route, confidence, and the reason. Never guess a route without this.",
     effect: "read",
+    availability: "bridge",
+    callerOrigins: ["*"],
     inputSchema: {
       type: "object",
       additionalProperties: false,
@@ -216,6 +224,8 @@ export function registerActions(actions) {
     name: "compute_savings",
     description: "Compute monthly cloud cost before routing, after routing, and savings for all 5 preset tasks from the recorded sample run, using the shipped savings formula. Pass the user's own prices and thresholds when given; defaults are the sample's own prices and thresholds. Always report the estimate caveat with the result.",
     effect: "read",
+    availability: "bridge",
+    callerOrigins: ["*"],
     inputSchema: {
       type: "object",
       additionalProperties: false,
@@ -269,6 +279,8 @@ export function registerActions(actions) {
     name: "export_routing_config",
     description: "Export the routing config for the 5 preset tasks as JSON and as a TypeScript snippet, mapping routes to Firebase AI Logic InferenceModes, exactly like the NanoOrCloud report export.",
     effect: "read",
+    availability: "bridge",
+    callerOrigins: ["*"],
     inputSchema: {
       type: "object",
       additionalProperties: false,
