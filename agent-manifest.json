@@ -1,0 +1,86 @@
+{
+  "brand": "NanoOrCloud",
+  "networks": [
+    {
+      "name": "nanoorcloud",
+      "front_man": "routing_coordinator",
+      "hocon": "./nanoorcloud.network.json",
+      "description": "Triages questions about NanoOrCloud, an app that stops developers guessing when to use on-device AI: it runs task prompts on Gemini Nano and in the cloud side by side, then recommends per-task routing (on-device / escalate / cloud) with projected monthly savings. Delegates routing questions to routing_specialist, savings and cost questions to savings_specialist, product and setup questions to product_specialist, and questions about the Open Agentic Web Challenge itself to the challenge_guide peer network, then summarizes results and guides next steps.",
+      "tags": [
+        "deployed",
+        "nsdeploy"
+      ],
+      "sample_queries": [
+        "From the recorded sample run, which of the 5 preset tasks should run on-device, and why?",
+        "How much would I save per month with the sample routing, and exactly how is that number calculated?",
+        "Explain the difference between on-device, escalate, and cloud routing, with the exact thresholds.",
+        "What does NanoOrCloud need to run \u2014 browser, model, and setup \u2014 and where is the live app?"
+      ]
+    }
+  ],
+  "llm_router": {
+    "base_url": "https://api.otari.ai/api/v1",
+    "mock": false,
+    "byok_router": "https://api.otari.ai/api/v1"
+  },
+  "allowed_peers": [
+    "https://worldwideagenticweb.org"
+  ],
+  "peer_policy": {
+    "mode": "open",
+    "deny_origins": [],
+    "note": "Public agent sites are reachable like web pages; credentials and capabilities do not transfer."
+  },
+  "agent_mcp": {
+    "protocol": "nsdeploy-agent-mcp/v1",
+    "network": "nanoorcloud",
+    "front_man": "routing_coordinator",
+    "available": false,
+    "reason": "This is a static bundle; a public MCP facade requires an application host."
+  },
+  "theme": {
+    "primary": "#0ea5e9"
+  },
+  "linking": {
+    "protocol": "nsdeploy-link/v1",
+    "exports": [
+      {
+        "network": "nanoorcloud",
+        "front_man": "routing_coordinator",
+        "aliases": [
+          "nanoorcloud",
+          "routing_coordinator"
+        ],
+        "url": "https://BaraGitDoodle-bit.github.io/nanoorcloud-agent/nanoorcloud"
+      }
+    ],
+    "imports": [
+      {
+        "network": "nanoorcloud",
+        "reference": "challenge_guide",
+        "callers": [
+          "routing_coordinator"
+        ],
+        "status": "linked",
+        "target": "https://worldwideagenticweb.org/wp-content/plugins/wwaw-agent-widget/assets/worldwide_agentic_web_widget/v1.0.9/worldwide_agentic_web_widget"
+      }
+    ],
+    "site": "https://BaraGitDoodle-bit.github.io/nanoorcloud-agent",
+    "link_updates": {
+      "mode": "browser-local"
+    }
+  },
+  "deployment": {
+    "mode": "static",
+    "self_contained_runtime": true,
+    "browser_mock": false,
+    "direct_byok": true,
+    "direct_mcp_requires_cors": true,
+    "public_mcp_facade": false
+  },
+  "actions": {
+    "version": 1,
+    "bridge": "./action-bridge.html",
+    "module": "./actions.js"
+  }
+}

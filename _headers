@@ -1,0 +1,14 @@
+/nanoorcloud-agent/agent-manifest.json
+  Access-Control-Allow-Origin: *
+/nanoorcloud-agent/nanoorcloud.network.json
+  Access-Control-Allow-Origin: *
+/nanoorcloud-agent/links.json
+  Access-Control-Allow-Origin: *
+/nanoorcloud-agent/agent-mcp.json
+  Access-Control-Allow-Origin: *
+/nanoorcloud-agent/.well-known/nsdeploy.json
+  Access-Control-Allow-Origin: *
+/nanoorcloud-agent/.well-known/nsdeploy-agent.json
+  Access-Control-Allow-Origin: *
+/nanoorcloud-agent/runtime/sandbox-worker.js
+  Content-Security-Policy: default-src 'none'; script-src blob:; connect-src 'none'; worker-src 'none'

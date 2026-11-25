@@ -1,0 +1,8 @@
+{
+  "version": 1,
+  "networks": {
+    "nanoorcloud": {
+      "challenge_guide": "https://worldwideagenticweb.org/wp-content/plugins/wwaw-agent-widget/assets/worldwide_agentic_web_widget/v1.0.9/worldwide_agentic_web_widget"
+    }
+  }
+}

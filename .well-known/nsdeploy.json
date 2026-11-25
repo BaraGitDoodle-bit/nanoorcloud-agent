@@ -1,0 +1,29 @@
+{
+  "protocol": "nsdeploy-link/v1",
+  "exports": [
+    {
+      "network": "nanoorcloud",
+      "front_man": "routing_coordinator",
+      "aliases": [
+        "nanoorcloud",
+        "routing_coordinator"
+      ],
+      "url": "https://BaraGitDoodle-bit.github.io/nanoorcloud-agent/nanoorcloud"
+    }
+  ],
+  "imports": [
+    {
+      "network": "nanoorcloud",
+      "reference": "challenge_guide",
+      "callers": [
+        "routing_coordinator"
+      ],
+      "status": "linked",
+      "target": "https://worldwideagenticweb.org/wp-content/plugins/wwaw-agent-widget/assets/worldwide_agentic_web_widget/v1.0.9/worldwide_agentic_web_widget"
+    }
+  ],
+  "site": "https://BaraGitDoodle-bit.github.io/nanoorcloud-agent",
+  "link_updates": {
+    "mode": "browser-local"
+  }
+}
